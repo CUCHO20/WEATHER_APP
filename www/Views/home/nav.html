@@ -107,6 +107,7 @@
 
     $('.btn-remove-id').click(function () {
         removeUserIdLocalStorageValue();
+        removeUserRolIdLocalStorageValue();
         loadPartialView('home/content', appRender);
         $('.btn-info-user').hide();
 
