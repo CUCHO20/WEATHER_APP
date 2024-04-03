@@ -45,7 +45,6 @@ function getSuggestionToPost(addSuggData) {
         success: function (response) {
             console.log('Sugerencia agregada con exito:' + response);
             removeModalSugg();
-            getAllSuggestions();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Error:', textStatus, errorThrown);
@@ -144,10 +143,13 @@ function setSpecificSuggestionsInfo(putSuggToUpdate) {
 }
 
 function setAllSuggestionsInfo(allSuggestionsData) {
-    $('.good-list-sugg').empty();
-
+    $('.good-list-sugg, .regular-list-sugg, .moderate-list-sugg, .deficient-list-sugg, .sodeficient-list-sugg').empty();
+    
     for (let i = 0; i < allSuggestionsData.length; i++) {
         const element = allSuggestionsData[i];
+        
+        $(`#put-input-${element.id_suggestion}`).removeClass();
+
         let html = `
         <div class="nav nav-pills d-flex align-items-center justify-content-between bg-light p-0 mb-3"
         style="height: auto;">
@@ -163,48 +165,68 @@ function setAllSuggestionsInfo(allSuggestionsData) {
             </div>
 
             <div class="mt-2 bg-info rounded-bottom col-12 p-2">
-                <div class="form-check form-switch">
-                    <input class="status form-check-input" type="checkbox" role="switch"
-                        id="flexSwitchCheckDefault">
-                    <label class="form-check-label text-light" for="flexSwitchCheckDefault">Mostrar sugerencia</label>
+                <div id="put-input-${element.id_suggestion}" class="form-check form-switch">
                 </div>
             </div>
         </div> 
+        `;
+        let classGood = `class-${element.id_suggestion}`;
+        let inputGood = `input-check-${element.id_suggestion}`;
+        let htmlGood = `
+        <input id="${inputGood}" class="form-check-input" type="checkbox" role="switch">
+        <label class="form-check-label text-light" for="${inputGood}">Mostrar sugerencia</label>               
         `;
 
         switch (element.WStatu.aqi_lvl) {
             case 1:
                 $('.good-list-sugg').append(html);
-                $('.status').prop('checked', element.status);
+                $(`#put-input-${element.id_suggestion}`).addClass(`form-check form-switch ${classGood}`);
+                $(`.${classGood}`).empty().append(htmlGood);
 
-                $('.btn-update-sugg').click(function () {
-                    loadPartialView('Modules/modal-edit-sugg', editSuggRender);
-                });
-
-                $('.btn-delete-sugg').click(function () {
-                    loadPartialView('Modules/modal-delete-sugg', deleteSuggRender);
-                });
-
+                $(`#${inputGood}`).prop('checked', element.status);
                 break;
 
             case 2:
                 $('.regular-list-sugg').append(html);
-                $('.status').prop('checked', element.status);
+                $(`#put-input-${element.id_suggestion}`).addClass(`form-check form-switch ${classGood}`);
+                $(`.${classGood}`).empty().append(htmlGood);
 
-                $('.btn-update-sugg').click(function () {
-                    loadPartialView('Modules/modal-edit-sugg', editSuggRender);
-                });
-
-                $('.btn-delete-sugg').click(function () {
-                    loadPartialView('Modules/modal-delete-sugg', deleteSuggRender);
-                });
-
+                $(`#${inputGood}`).prop('checked', element.status);
                 break;
 
-            default:
+            case 3:
+                $('.moderate-list-sugg').append(html);
+                $(`#put-input-${element.id_suggestion}`).addClass(`form-check form-switch ${classGood}`);
+                $(`.${classGood}`).empty().append(htmlGood);
+
+                $(`#${inputGood}`).prop('checked', element.status);
+                break;
+
+            case 4:
+                $('.deficient-list-sugg').append(html);
+                $(`#put-input-${element.id_suggestion}`).addClass(`form-check form-switch ${classGood}`);
+                $(`.${classGood}`).empty().append(htmlGood);
+
+                $(`#${inputGood}`).prop('checked', element.status);
+                break;
+
+            case 5:
+                $('.sodeficient-list-sugg').append(html);
+                $(`#put-input-${element.id_suggestion}`).addClass(`form-check form-switch ${classGood}`);
+                $(`.${classGood}`).empty().append(htmlGood);
+
+                $(`#${inputGood}`).prop('checked', element.status);
                 break;
         }
     }
+        
+        $('.btn-update-sugg').click(function () {
+            loadPartialView('Modules/modal-edit-sugg', editSuggRender);
+        });
+    
+        $('.btn-delete-sugg').click(function () {
+            loadPartialView('Modules/modal-delete-sugg', deleteSuggRender);
+        });
 }
 
 function removeModalSugg() {
@@ -242,4 +264,3 @@ function setSuggestionsInfo(suggestionsData) {
         }
     }
 }
-
