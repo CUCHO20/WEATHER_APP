@@ -202,7 +202,7 @@
     </div>
 
     <ol class="nav nav-pills position-relative flex-column mx-4 bg-light" style="min-width: 280px;">
-        <a class="btn-edit-sugg"><div class="d-flex flex-column align-items-center justify-content-center position-absolute top-0 start-100 translate-middle border border-light rounded-circle bg-success" style="width: 2rem; height: 2rem;"><i class="bi bi-plus text-light" style="font-size: x-large;"></i></div></a>
+        <div class="nav-btn-edit-sugg position-absolute top-0 start-100 translate-middle"></div>
         <p class="d-flex justify-content-between">
             <strong>Calidad del aire:</strong>
             <span id="aqi-lvl" class="px-2 rounded text-white"></span>
@@ -239,7 +239,6 @@
 <script>
     // init();
 
-    $('.btn-edit-sugg').click(function() {
-        loadPartialView('suggest/edit-sugg', appRender);
-    });
+    btnEditSuggRender = $('.nav-btn-edit-sugg');
+    if (getUserRolIdLocalStorageValue() == 2) { loadPartialView('Modules/btn-edit-sugg', btnEditSuggRender); }
 </script>

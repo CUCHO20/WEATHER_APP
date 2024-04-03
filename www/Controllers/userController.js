@@ -7,8 +7,20 @@ function saveUserIdLocalStorageValue(id_user, value) {
     return localStorage.setItem('id_user', value);
 }
 
+function saveUserRolIdLocalStorageValue(id_rol, value) {
+    return localStorage.setItem('id_rol', value);
+}
+
+function getUserRolIdLocalStorageValue() {
+    return localStorage.getItem('id_rol');
+}
+
 function getUserIdLocalStorageValue() {
     return localStorage.getItem('id_user');
+}
+
+function removeUserRolIdLocalStorageValue() {
+    return localStorage.removeItem('id_rol');
 }
 
 function removeUserIdLocalStorageValue() {
@@ -62,15 +74,16 @@ function userLogin(formLogin) {
         contentType: 'application/json',
         data: JSON.stringify(formLogin),
         success: function (response) {
+            console.log(response.value.id_rol)
             if (response.Success == true) {
                 console.log('Inicio de sesión exitoso:', response.Message);
-
-                // Guardar el ID del usuario en el almacenamiento local
-                saveUserIdLocalStorageValue("id_user", response.value.id_user);
-
-                // Mostrar el ID del usuario almacenado
                 console.log('ID de usuario:', getUserIdLocalStorageValue("id_user"));
+
                 loadPartialView('home/content', appRender);
+                
+                saveUserIdLocalStorageValue("id_user", response.value.id_user);
+                saveUserRolIdLocalStorageValue("id_rol", response.value.id_rol);
+
                 showUserIcon(response.value.imagename);
                 getUserData(parseInt(response.value.id_user));
             } else {
