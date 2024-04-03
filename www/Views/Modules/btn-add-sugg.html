@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <p class="m-0">Agregar nueva sugerencia:</p>
+    <a class="btn-add-sugg" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <div class="px-2 py-1 rounded bg-success">
+            <i class="bi bi-plus text-light" style="font-size: large;"></i>
+        </div>
+    </a>
+</div>
+
+<script>
+    $('.btn-add-sugg').click(function () {
+        loadPartialView('Modules/modal-add-sugg', addSuggRender);
+    });
+</script>

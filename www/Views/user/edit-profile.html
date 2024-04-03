@@ -1,0 +1,150 @@
+<section class="container my-4">
+    <div class="mx-3 mt-4 py-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light">
+                <li class="breadcrumb-item"><a class="home-route">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Editar perfil</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="mb-2">
+            <h2 class="text-center">Cuenta / <strong class="user-rol"></strong></h2>
+        </div>
+        <ol class="nav nav-pills bg-light">
+            <div class="col-12 bg-info rounded-top">
+                <h1 class="text-light m-0 ps-2 py-2" style="font-weight: 900;">Diseño</h1>
+            </div>
+            <li class="nav-item row">
+                <div class="col-12 mt-2">
+                    <p class="text-body">Imagen</p>
+                </div>
+                <div class="col-6 d-flex align-items-center justify-content-center">
+                    <div class="img-cat-user" style="width: 85px; height: 85px;"></div>
+                </div>
+                <div class="img-choose col-6 d-flex align-items-center justify-content-center">
+                    <div class="text-center">
+                        <a>
+                            <div id="img-cat" style="width: 65px; height: 65px; margin: 2rem;" class="cat-one"></div>
+                        </a>
+                        <a>
+                            <div id="img-cat" style="width: 65px; height: 65px; margin: 2rem;" class="cat-two"></div>
+                        </a>
+                        <a>
+                            <div id="img-cat" style="width: 65px; height: 65px; margin: 2rem;" class="cat-three"></div>
+                        </a>
+                        <a>
+                            <div id="img-cat" style="width: 65px; height: 65px; margin: 2rem;" class="cat-four"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="my-3 color-bg row">
+                    <p class="text-body col-12">Color de fondo</p>
+                    <div class="col-6 d-flex align-items-center justify-content-center">
+                        <div class="bg-color-chosen bg-user rounded" style="width: 70px; height: 70px;"></div>
+                    </div>
+                    <div class="bg-color-choose col-6 d-flex align-items-center justify-content-center gap-2">
+                        <a class="bg-primary rounded a-color" style="width: 50px; height: 40px;"></a>
+                        <a class="bg-success rounded a-color" style="width: 50px; height: 40px;"></a>
+                        <a class="bg-warning rounded a-color" style="width: 50px; height: 40px;"></a>
+                        <a class="bg-danger rounded a-color" style="width: 50px; height: 40px;"></a>
+                    </div>
+                </div>
+            </li>
+        </ol>
+        <ol class="nav nav-pills bg-light mt-4">
+            <div class="col-12 bg-info rounded-top">
+                <h1 class="text-light m-0 ps-2 py-2" style="font-weight: 900;">Datos</h1>
+            </div>
+            <li class="nav-item col-12 mt-4">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control bg-secondary user-name-val" value="" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control bg-secondary user-email-val" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <label for="user-password" class="form-label">Password</label>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control user-password-val" id="user-password"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn-attr btn btn-info bg-info text-light" type="button" id="button-addon2"><i class="bi bi-eye" style="font-size: large;"></i></button>
+                    </div>
+                </form>
+            </li>
+        </ol>
+        <div class="d-flex align-items-center justify-content-center mt-3">
+            <button type="button" class="btn-edit btn btn-info bg-info text-light"
+                style="border-radius: 10px;">Guardar</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('.btn-attr').click(function() {
+        $('#user-password').attr('type') == 'password' ? $('#user-password').removeAttr('type').attr('type', 'text') : $('#user-password').removeAttr('type').attr('type', 'password');
+    });
+
+    var imagename
+    var bgcolor
+
+    $('.img-choose #img-cat').click(function () {
+        var imgSrc = $(this).attr('class').split(' ')[0];
+        var imgUsr = $('.img-cat-user');
+        imgUsr.removeClass().addClass('img-cat-user').addClass(imgSrc);
+        imagename = imgSrc;
+
+        $('.img-choose #img-cat').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    $('.bg-color-choose a').click(function () {
+        var colorClass = $(this).attr('class').split(' ')[0];
+        $('.bg-color-chosen').removeClass().addClass('bg-color-chosen').addClass(colorClass);
+        bgcolor = colorClass;
+
+        $('.bg-color-choose a').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    var user_rol
+    var id_rol
+    var user_name
+    var email
+    var password
+    var id = parseInt(getUserIdLocalStorageValue())
+
+    $('.btn-edit').click(function () {
+        user_rol = $('.user-rol').text();
+        console.log(user_rol);
+        user_rol == "AdministradorAdministrador" ? id_rol = 2 : id_rol = 1;
+        user_name = $('.user-name-val').val();
+        email = $('.user-email-val').val();
+        password = $('.user-password-val').val();
+
+        var updateData = {
+            bgcolor: bgcolor,
+            email: email,
+            id_rol: id_rol,
+            id_user: id,
+            imagename: imagename,
+            password: password,
+            user_name: user_name
+        }
+
+        updateUserData(updateData, getUserIdLocalStorageValue());
+    });
+
+    getUserData(getUserIdLocalStorageValue());
+
+    $('.home-route').on('click', function () {
+        loadPartialView('home/content', appRender);
+        $('.btn-show-info').show();
+        $('.btn-remove-id').show();
+        $('.dropdown-divider').show();
+    });
+</script>

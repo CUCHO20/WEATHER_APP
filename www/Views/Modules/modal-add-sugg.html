@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar sugerencia</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div>
+        <p class="m-0">
+            Categoría: <strong class="aqi-txt"></strong>
+        </p>
+        <p class="m-0 mb-2">
+            Nivel aqi: <strong class="aqi-lvl"></strong>
+        </p>
+    </div>
+    <form>
+        <textarea id="input-sugg" class="form-control" aria-label="With textarea"></textarea>
+
+        <div class="form-check form-switch py-2">
+            <input class="status form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label text-body" for="flexSwitchCheckDefault">Mostrar sugerencia</label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button id="btn-save-sugg" type="button" class="btn btn-primary">Guardar</button>
+</div>
+
+<script>
+    let status
+    let suggestion
+    let id_wsatus
+
+    $('#btn-save-sugg').click(function () {
+        let intId = parseInt($('.aqi-lvl').text());
+        status = $('.status').prop();
+        suggestion = $('#input-sugg').val();
+
+        if (suggestion === '') {
+            suggestion = "No se proporcionó una sugerencia";
+        }
+
+        id_wstatus = intId;
+
+        let addSuggData = {
+            id_wstatus: id_wstatus,
+            suggestion1: suggestion,
+            status: status
+        };
+
+        getSuggestionToPost(addSuggData);
+    });
+
+    function setIdToAddSugg(idAqiLvl) {
+        $('.aqi-txt').empty();
+        $('.aqi-lvl').empty();
+
+        const section = ['Bueno', 'Regular', 'Moderado', 'Deficiente', 'Muy deficiente'];
+        let aqiTxt = $('.aqi-txt');
+        let aqiLvl = $('.aqi-lvl');
+
+        aqiTxt.text(section[idAqiLvl - 1]);
+        aqiLvl.text(idAqiLvl);
+    }
+
+    setIdToAddSugg(idAqiLvl)
+</script>

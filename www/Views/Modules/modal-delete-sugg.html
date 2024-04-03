@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabelThree">Eliminar sugerencia</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <p>Esta seguro de querer eliminar la sugerencía?</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn-delete-id-sugg btn btn-primary">Guardar</button>
+</div>
+
+<script>
+    // Define la función para eliminar el ID
+    function deleteId(id) {
+        idSuggestion = id;
+
+        let deleteSuggData = {
+            id_suggestion: idSuggestion
+        };
+
+        deleteSuggestionById(idSuggestion, deleteSuggData);
+    }
+
+    // Llama a la función para eliminar el ID y asigna el evento onclick
+    function getIdToDelete(idDelete) {
+        $('.btn-delete-id-sugg').removeAttr('onclick').attr('onclick', `deleteId(${idDelete})`);
+    }
+
+    // Ejecuta getIdToDelete con el ID que deseas eliminar
+    getIdToDelete(idDelete);
+</script>

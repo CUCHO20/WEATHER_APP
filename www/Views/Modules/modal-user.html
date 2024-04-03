@@ -1,0 +1,32 @@
+<div class="offcanvas-header">
+    <h5 class="user-rol offcanvas-title" id="offcanvasDarkLabel"></h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<div class="offcanvas-body">
+    <div class="text-center">
+        <div class="user-background position-relative p-5 mb-5 rounded-top">
+            <div class="position-absolute top-0 end-0 mt-2" style="margin-right: 0.9rem">
+                <a class="btn-edit-user">
+                    <i class="bi bi-pencil-fill text-light" style="font-size: large;"></i>
+                </a>
+            </div>
+            <div class="position-absolute top-100 start-50 translate-middle">
+                <div class="user-img" style="border-radius: 50%; border: 6px solid #212529; width: 95px; height: 95px;">
+                </div>
+            </div>
+        </div>
+        <div class="py-3">
+            <h1 class="text-light user-name"></h1>
+            <span class="text-light-emphasis user-email"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.btn-edit-user').click(function () {
+        removOffCanvas();
+        loadPartialView('user/edit-profile', appRender);
+    });
+
+    getUserData(getUserIdLocalStorageValue());
+</script>

@@ -1,0 +1,155 @@
+<section class="container my-4">
+    <div class="mx-3 mt-4 py-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light">
+                <li class="breadcrumb-item"><a class="home-route">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Editar sugerencias</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button onclick="setIdSugg(1)" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    <strong>Bueno</strong>
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+
+                    <div class="btn-add-sugg-render"></div>
+
+                    <div class="good-list-sugg">
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button onclick="setIdSugg(2)" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseTwo">
+                    <strong>Regular</strong>
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+
+                    <div class="btn-add-sugg-render"></div>
+                    <div class="regular-list-sugg"></div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button onclick="setIdSugg(3)" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseThree">
+                    <strong>Moderado</strong>
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+
+                    <div class="btn-add-sugg-render"></div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                <button onclick="setIdSugg(4)" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseFour">
+                    <strong>Deficiente</strong>
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingFour">
+                <div class="accordion-body">
+                    
+                    <div class="btn-add-sugg-render"></div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                <button onclick="setIdSugg(5)" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseFive">
+                    <strong>Muy deficiente</strong>
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingFive">
+                <div class="accordion-body">
+
+                    <div class="btn-add-sugg-render"></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="edit-sugg modal-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabelTwo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="add-sugg modal-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabelThree" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="delete-sugg modal-content">
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    editSuggRender = $('.edit-sugg');
+    addSuggRender = $('.add-sugg');
+    deleteSuggRender = $('.delete-sugg');
+    btnAddSuggRender = $('.btn-add-sugg-render');
+
+    loadPartialView('Modules/btn-add-sugg', btnAddSuggRender);
+
+    $('.home-route').on('click', function () {
+        loadPartialView('home/content', appRender);
+        // $('.btn-show-info').show();
+        // $('.btn-remove-id').show();
+        // $('.dropdown-divider').show();
+    });
+    
+    getAllSuggestions();
+</script>

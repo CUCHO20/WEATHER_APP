@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar sugerencia</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div>
+        <p class="m-0">
+            Categoría: <strong class="aqi-txt"></strong>
+        </p>
+        <p class="m-0 mb-2">
+            Nivel aqi: <strong class="aqi-lvl"></strong>
+        </p>
+    </div>
+    <form>
+        <textarea class="suggestion form-control" aria-label="With textarea"></textarea>
+
+        <div class="form-check form-switch py-2">
+            <input class="status-to-put form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label text-body" for="flexSwitchCheckDefault">Mostrar sugerencia</label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn-update-id-sugg btn btn-primary">Guardar</button>
+</div>
+
+<script>
+    function clickToUpdateSugg(idSugg) {
+        let id_suggestion = idSugg;
+        let id_wstatus = parseInt($('.aqi-lvl').text());
+        let suggestion = $('.suggestion').val();
+
+        if ($('.status-to-put').prop('checked') === true) {
+            isChecked = true;
+        } else {
+            isChecked = false;
+        }
+        let status = isChecked;
+
+        let updateSuggData = {
+            id_suggestion: id_suggestion,
+            id_wstatus: id_wstatus,
+            suggestion1: suggestion,
+            status: status
+        }
+
+        getSuggestionToPut(updateSuggData, id_suggestion);
+    }
+</script>

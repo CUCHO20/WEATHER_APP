@@ -1,0 +1,142 @@
+<nav class="navbar fixed-top navbar-expand-lg bg-dark d-flex align-items-center justify-content-center"
+    data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand ps-2">
+            <i class="bi bi-cloudy-fill text-light" style="font-size: x-large;"></i>
+        </a>
+
+        <div class="nav-item d-flex gap-3">
+            <div class="btn-search">
+                <form>
+                    <button class="btn-show-search btn btn-secondary d-flex align-items-center justify-content-center"
+                        style="width: 50px; height: 50px" type="button" data-bs-toggle="offcanvas"
+                        href="#offcanvasExample" aria-controls="offcanvasExample">
+                        <i class="bi bi-search text-light" style="font-size: x-large;"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="btn-info-user">
+                <button class="user-icon-btn btn d-flex align-items-center justify-content-center"
+                    style="width: 50px; height: 50px;" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="btn-show-info dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDark"
+                        aria-controls="offcanvasDark">Ver perfil</a>
+                    <div class="dropdown-divider-user"></div>
+                    <a class="dropdown-item btn-remove-id">Cerrar sesión</a>
+                </div>
+            </div>
+
+            <div class="btn-user">
+                <button class="btn d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"
+                    data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-person text-light" style="font-size: x-large;"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item btn-login">Iniciar sesión</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item btn-register">Registrarse</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="offCanvasRender offcanvas offcanvas-end text-bg-dark vw-100" data-bs-backdrop="false" tabindex="-1"
+    id="offcanvasDark" aria-labelledby="offcanvasDarkLabel">
+
+</div>
+
+<div class="offCanvasSearchRender offcanvas offcanvas-end vw-100 bg-dark" tabindex="-1" id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel">
+
+</div>
+
+<script>
+    /*
+        • Secciones (Botones con diff. dropdowns) a mostrar cuando la aplicación arranque.
+    */
+
+    $('.btn-info-user').hide(); // Ocultar 
+    $('.btn-user').show(); // Mostrar
+
+
+    /*
+        • Variables con scope global en donde se selecciona
+          el elemento que disparó el evento y su clase, para
+          renderizar los OffCanvas correspondientes.
+    */
+
+    canvasRender = $('.offCanvasRender');
+    searchRender = $('.offCanvasSearchRender');
+
+
+    /*
+        • Función para iniciar la función por busqueda, tiene
+          como parametros la longitud y Latitud que recoge
+          de la acción onClick().
+    */
+
+    function handleItemClick(event, lat, lon) {
+        console.log("Latitud:", lat);
+        console.log("Longitud:", lon);
+
+        $('.offcanvas').removeClass('show');
+        $('.offcanvas-backdrop').removeClass('offcanvas-backdrop');
+        $('body').removeAttr('style');
+
+        initBySearch(lat, lon);
+    }
+
+
+    /*
+        • Eventos click() sobre botones de usuario:
+
+            - Botón (btn-remove-id): Elimina el id del
+              usuario almacenada en localStorage.
+
+            - Botón (btn-show-info): Muestra el offcanvas
+              con la información respondiente al usuario.
+
+            - Botón (btn-show-info): Muestra el offcanvas
+              con el input para realizar busquedas.
+    */
+
+    $('.btn-remove-id').click(function () {
+        removeUserIdLocalStorageValue();
+        loadPartialView('home/content', appRender);
+        $('.btn-info-user').hide();
+
+        $('.btn-user').show();
+        $('.btn-register').show();
+        $('.btn-login').show();
+        $('.dropdown-divider').show();
+    });
+
+    $('.btn-show-info').on('click', function () {
+        loadPartialView('Modules/modal-user', canvasRender);
+    });
+
+    $('.btn-show-search').on('click', function () {
+        loadPartialView('Modules/modal-search', searchRender);
+    });
+
+
+    /*
+        • Selección de las secciones en donde se renderizara
+          las vistas parciales por defecto.
+    */
+
+    // Get the login.html document to render into appRender
+    document.querySelector('.btn-login').addEventListener('click', function () {
+        loadPartialView('user/login', appRender);
+    });
+
+    // Get the register.html document to render into appRender
+    document.querySelector('.btn-register').addEventListener('click', function () {
+        loadPartialView('user/register', appRender);
+    });
+</script>
