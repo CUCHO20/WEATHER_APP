@@ -43,7 +43,7 @@ function getSuggestionToPost(addSuggData) {
         data: JSON.stringify(addSuggData),
         contentType: 'application/json',
         success: function (response) {
-            console.log('Sugerencia agregada con exito:' + response);
+            console.log('Sugerencia agregada con exito');
             removeModalSugg();
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -59,7 +59,6 @@ function getAllSuggestions() {
         contentType: 'application/json',
         success: function (response) {
             console.log(response);
-
             allSuggestionsData = response;
             setAllSuggestionsInfo(allSuggestionsData);
         },
@@ -76,7 +75,7 @@ function deleteSuggestionById(id, deleteSuggData) {
         contentType: 'application/json',
         data: JSON.stringify(deleteSuggData),
         success: function (response) {
-            console.log('Sugerencia eliminada con exito:' + response);
+            console.log('Sugerencia eliminada con exito');
             removeModalSugg();
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -109,7 +108,7 @@ function getSuggestionToPut(updateSuggData, id) {
         contentType: 'application/json',
         data: JSON.stringify(updateSuggData),
         success: function (response) {
-            console.log('Sugerencia actualizada correctamente:', response);
+            console.log('Sugerencia actualizada correctamente');
             removeModalSugg();
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -173,8 +172,8 @@ function setAllSuggestionsInfo(allSuggestionsData) {
         let classGood = `class-${element.id_suggestion}`;
         let inputGood = `input-check-${element.id_suggestion}`;
         let htmlGood = `
-        <input id="${inputGood}" class="form-check-input" type="checkbox" role="switch">
-        <label class="form-check-label text-light" for="${inputGood}">Mostrar sugerencia</label>               
+        <input id="${inputGood}" class="form-check-input" type="checkbox" role="switch" disabled>
+        <p class="m-0 text-light">Mostrar sugerencia</p>               
         `;
 
         switch (element.WStatu.aqi_lvl) {
@@ -237,12 +236,8 @@ function removeModalSugg() {
 }
 
 function setSuggestionsInfo(suggestionsData) {
-    // RESET
-
     $('#aqi-lvl .aqi-txt .aqi-list').empty();
     $('#aqi-lvl').removeClass().addClass('px-2 rounded text-white');
-
-    // SUGGESTIONS SECTION
 
     $('#aqi-lvl').text(suggestionsData[0].WStatu.level_txt);
     $('.aqi-lvl').text(suggestionsData[0].WStatu.level_txt);
