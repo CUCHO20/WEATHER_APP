@@ -2,8 +2,7 @@
 
 function init() {
     if (navigator.geolocation) {
-
-        navigator.geolocation.getCurrentPosition(function (position) {
+        var onSuccess = function(position) {
             let lat = position.coords.latitude;
             let lon = position.coords.longitude;
             getWeatherByCoordinates(lat, lon);
@@ -11,9 +10,9 @@ function init() {
             getWeatherAirPolution(lat, lon);
             setMapInfo(lat, lon);
             console.log(setMapInfo(lat, lon));
+        }
 
-        }, function (error) {
-
+        function onError(error) {
             console.error("Error: " + error.message);
             let lat = 26.0340803;
             let lon = -98.455297;
@@ -21,8 +20,9 @@ function init() {
             getWeatherFiveOvecast(lat, lon);
             getWeatherAirPolution(lat, lon);
             setMapInfo(lat, lon);
+        }
 
-        });
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     } else {
         console.error("Geolocation is not supported by this browser.");
     }
