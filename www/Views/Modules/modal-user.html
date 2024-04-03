@@ -26,6 +26,8 @@
     $('.btn-edit-user').click(function () {
         removOffCanvas();
         loadPartialView('user/edit-profile', appRender);
+        $('.btn-search').hide();
+        $('.btn-info-user').hide();
     });
 
     getUserData(getUserIdLocalStorageValue());

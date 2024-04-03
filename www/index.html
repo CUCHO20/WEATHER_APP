@@ -38,12 +38,12 @@
 
     <!-- GLOBAL INIT STYLES -->
     <link rel="stylesheet" href="Public/css/init.css">
-    
+
     <!-- SOURCES -->
     <link rel="stylesheet" href="Public/css/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="Public/css/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="Public/js/leaflet/dist/leaflet.css">
-    
+
     <script src="Public/js/jquery/dist/jquery.min.js"></script>
     <script src="Public/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="Public/js/leaflet/dist/leaflet-src.js"></script>
@@ -76,6 +76,11 @@
 
         loadPartialView('home/nav', navRender);
         loadPartialView('home/content', appRender);
+
+        window.addEventListener('beforeunload', function (event) {
+            removeUserIdLocalStorageValue();
+            removeUserRolIdLocalStorageValue();
+        });
     </script>
 
 </body>
