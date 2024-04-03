@@ -8,9 +8,8 @@
         <label for="input-search" class="form-label text-light">Busca un ciudad...</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="input-search" placeholder="Ej. Reynosa"
-                aria-describedby="button-addon2">
-            <button class="btn-search-data btn btn-info bg-info text-light" style="box-shadow: none;" type="button"
-                id="button-addon2">
+                aria-describedby="button-addon">
+            <button class="btn-search-data btn btn-info bg-info text-light" style="box-shadow: none;" type="button" data-bs-dismiss="offcanvas" id="button-addon">
                 <i class="bi bi-search text-light" style="font-size: x-large;"></i>
             </button>
         </div>
@@ -22,6 +21,11 @@
 </div>
 
 <script>
+    $('.btn-search-data').click(function() {
+        let location  = $('#input-search').val();
+        getCoordinatesByNameForInput(location);
+    });
+
     $('#input-search').on('input', function () {
         let location = $(this).val().trim();
         if (location !== "") {

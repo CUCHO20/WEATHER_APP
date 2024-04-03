@@ -93,6 +93,22 @@ const mps_to_kmh = mps => {
 
 // Funciones AJAX para la consulta de datos
 
+function getCoordinatesByNameForInput(location) {
+    let url = getGeocodingDataByHttp + "direct?q=" + location + "&limit=5&appid=" + apiKey;
+
+    $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            initBySearch(response[0].lat, response[0].lon);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error("Error in get geocoding data: " + textStatus + " - " + errorThrown);
+        }
+    });
+}
+
 function getCoordinatesByName(location) {
     let url = getGeocodingDataByHttp + "direct?q=" + location + "&limit=5&appid=" + apiKey;
 
@@ -101,37 +117,9 @@ function getCoordinatesByName(location) {
         method: 'GET',
         dataType: 'json',
         success: function (response) {
-            console.log("Geocoding data:", response);
+            console.log(response)
             $('.item-result').empty();
-            if (response.length > 0) {
-                response.forEach(function (result) {
-                    let html = `
-                    <li class="item-search-list">
-                        <a onclick="handleItemClick(event, ${result.lat}, ${result.lon})" data-bs-dismiss="offcanvas">
-                            <div class="d-flex gap-3">
-                                <div class="ps-2 d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-geo-alt-fill" style="font-size: x-large;"></i>
-                                </div>
-                                <div>
-                                    <p class="location-name m-0" style="font-size: 1rem;">${result.name}</p>
-                                    <p class="location-StateCountry m-0" style="font-size: small;">${result.state || ""}, ${result.country}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    `;
-
-                    $('.item-result').append(html);
-                });
-            } else {
-                $('.item-result').append(`
-                <li class="item-search-list d-flex align-items-center justify-content-center">
-                    <div class="d-flex gap-3">
-                        <p class="m-0" style="font-size: 1rem;">No se encontraron resultados.</p>
-                    </div>
-                </li>
-                `);
-            }
+            geocodingDataListInfo(response);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get geocoding data: " + textStatus + " - " + errorThrown);
@@ -215,6 +203,38 @@ function getWeatherAirPolution(lat, lon) {
 }
 
 // Funciones para mostrar la información en las secciones correspondientes
+
+function geocodingDataListInfo(response) {
+    if (response.length > 0) {
+        response.forEach(function (result) {
+            let html = `
+            <li class="item-search-list">
+                <a onclick="handleItemClick(event, ${result.lat}, ${result.lon})" data-bs-dismiss="offcanvas">
+                    <div class="d-flex gap-3">
+                        <div class="ps-2 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-geo-alt-fill" style="font-size: x-large;"></i>
+                        </div>
+                        <div>
+                            <p class="location-name m-0" style="font-size: 1rem;">${result.name}</p>
+                            <p class="location-StateCountry m-0" style="font-size: small;">${result.state || ""}, ${result.country}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            `;
+
+            $('.item-result').append(html);
+        });
+    } else {
+        $('.item-result').append(`
+        <li class="item-search-list d-flex align-items-center justify-content-center">
+            <div class="d-flex gap-3">
+                <p class="m-0" style="font-size: 1rem;">No se encontraron resultados.</p>
+            </div>
+        </li>
+        `);
+    }
+}
 
 function setMapInfo(lat, lon) {
     if (map) {
