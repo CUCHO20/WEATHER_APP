@@ -1,31 +1,26 @@
 // Funcion de inicio
 
 function init() {
-    if (navigator.geolocation) {
-        var onSuccess = function(position) {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-            getWeatherByCoordinates(lat, lon);
-            getWeatherFiveOvecast(lat, lon);
-            getWeatherAirPolution(lat, lon);
-            setMapInfo(lat, lon);
-            console.log(setMapInfo(lat, lon));
-        }
-
-        function onError(error) {
-            console.error("Error: " + error.message);
-            let lat = 26.0340803;
-            let lon = -98.455297;
-            getWeatherByDefaultCoord(lat, lon);
-            getWeatherFiveOvecast(lat, lon);
-            getWeatherAirPolution(lat, lon);
-            setMapInfo(lat, lon);
-        }
-
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    } else {
-        console.error("Geolocation is not supported by this browser.");
+    var onSuccess = function (position) {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        getWeatherByCoordinates(lat, lon);
+        getWeatherFiveOvecast(lat, lon);
+        getWeatherAirPolution(lat, lon);
+        setMapInfo(lat, lon);
     }
+
+    function onError(error) {
+        console.error("Error: " + error.message);
+        let lat = 26.0340803;
+        let lon = -98.455297;
+        getWeatherByDefaultCoord(lat, lon);
+        getWeatherFiveOvecast(lat, lon);
+        getWeatherAirPolution(lat, lon);
+        setMapInfo(lat, lon);
+    }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
 function initBySearch(lat, lon) {
@@ -112,7 +107,7 @@ function getCoordinatesByName(location) {
                 response.forEach(function (result) {
                     let html = `
                     <li class="item-search-list">
-                        <a onclick="handleItemClick(event, ${result.lat}, ${result.lon})">
+                        <a onclick="handleItemClick(event, ${result.lat}, ${result.lon})" data-bs-dismiss="offcanvas">
                             <div class="d-flex gap-3">
                                 <div class="ps-2 d-flex align-items-center justify-content-center">
                                     <i class="bi bi-geo-alt-fill" style="font-size: x-large;"></i>
@@ -330,7 +325,7 @@ function showWeatherInfo(weatherData) {
 
     $('.status-weather .icon-weather .info-day .info-city .city-weather').empty();
     $('.sunrise-w .sunset-w .humidity-w .pressure-w .visibility-w .feels-like-w').empty();
-    
+
     // TODAY SECTION
 
     $('.status-weather').text(parseInt(weatherData.main.temp)).append(`<span class="text-info">&deg;<sup>c</sup></span>`);
@@ -344,7 +339,7 @@ function showWeatherInfo(weatherData) {
     let monthName = months[date.getMonth()]; // Obtener el nombre del mes
     let formattedDate = dayOfWeek + ', ' + dayOfMonth + ' de ' + monthName;
     console.log("Fecha:", formattedDate);
-    
+
     $('.info-day').text(formattedDate);
     $('.info-city').text(weatherData.name + ", " + weatherData.sys.country);
     $('.city-weather').text(weatherData.name);

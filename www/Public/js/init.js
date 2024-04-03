@@ -22,8 +22,3 @@ function setIdSugg(id) {
 function setIdToDelete(id) {
     idDelete = id;
 }
-
-function removOffCanvas() {
-    $('.offcanvas').removeClass('show');
-    $('body').removeAttr('style');
-}

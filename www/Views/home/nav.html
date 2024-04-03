@@ -71,7 +71,10 @@
     */
 
     canvasRender = $('.offCanvasRender');
+    loadPartialView('Modules/modal-user', canvasRender);
+
     searchRender = $('.offCanvasSearchRender');
+    loadPartialView('Modules/modal-search', searchRender);
 
 
     /*
@@ -81,9 +84,6 @@
     */
 
     function handleItemClick(event, lat, lon) {
-        console.log("Latitud:", lat);
-        console.log("Longitud:", lon);
-
         $('.offcanvas').removeClass('show');
         $('.offcanvas-backdrop').removeClass('offcanvas-backdrop');
         $('body').removeAttr('style');
@@ -117,12 +117,9 @@
         $('.dropdown-divider').show();
     });
 
-    $('.btn-show-info').on('click', function () {
-        loadPartialView('Modules/modal-user', canvasRender);
-    });
-
     $('.btn-show-search').on('click', function () {
-        loadPartialView('Modules/modal-search', searchRender);
+        $('#input-search').val('');
+        $('.item-result').html('');
     });
 
 

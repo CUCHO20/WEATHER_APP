@@ -6,7 +6,7 @@
     <div class="text-center">
         <div class="user-background position-relative p-5 mb-5 rounded-top">
             <div class="position-absolute top-0 end-0 mt-2" style="margin-right: 0.9rem">
-                <a class="btn-edit-user">
+                <a class="btn-edit-user" data-bs-dismiss="offcanvas">
                     <i class="bi bi-pencil-fill text-light" style="font-size: large;"></i>
                 </a>
             </div>
@@ -24,7 +24,6 @@
 
 <script>
     $('.btn-edit-user').click(function () {
-        removOffCanvas();
         loadPartialView('user/edit-profile', appRender);
         $('.btn-search').hide();
         $('.btn-info-user').hide();
