@@ -101,7 +101,9 @@ function getCoordinatesByNameForInput(location) {
         method: 'GET',
         dataType: 'json',
         success: function (response) {
-            initBySearch(response[0].lat, response[0].lon);
+            response.length > 0
+            ? initBySearch(response[0].lat, response[0].lon)
+            : loadPartialView('error404/not-found', appRender);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get geocoding data: " + textStatus + " - " + errorThrown);
