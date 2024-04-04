@@ -62,6 +62,7 @@
 
     $('.btn-info-user').hide(); // Ocultar 
     $('.btn-user').show(); // Mostrar
+    $('.btn-search').show();
 
 
     /*
@@ -84,10 +85,6 @@
     */
 
     function handleItemClick(event, lat, lon) {
-        $('.offcanvas').removeClass('show');
-        $('.offcanvas-backdrop').removeClass('offcanvas-backdrop');
-        $('body').removeAttr('style');
-
         initBySearch(lat, lon);
     }
 
@@ -117,12 +114,12 @@
         $('.dropdown-divider').show();
     });
 
-    $('.btn-show-search').on('click', function () {
+    $('.btn-show-search').click(function () {
         $('#input-search').val('');
         $('.item-result').html('');
     });
 
-
+    
     /*
         • Selección de las secciones en donde se renderizara
           las vistas parciales por defecto.
@@ -131,10 +128,12 @@
     // Get the login.html document to render into appRender
     document.querySelector('.btn-login').addEventListener('click', function () {
         loadPartialView('user/login', appRender);
+        $('.btn-search').hide();
     });
 
     // Get the register.html document to render into appRender
     document.querySelector('.btn-register').addEventListener('click', function () {
         loadPartialView('user/register', appRender);
+        $('.btn-search').hide();
     });
 </script>
