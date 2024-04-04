@@ -55,7 +55,7 @@
     </ol>
 </section>
 
-<section class="container my-5 d-flex flex-column align-items-center justify-content-center" id="today-highlights">
+<section class="container-fluid my-5 d-flex flex-column align-items-center justify-content-center" id="today-highlights">
     <div class="text-center">
         <h3>
             <span class="text-body-secondary">Pronóstico de </span>
@@ -231,13 +231,13 @@
         </h3>
     </div>
 
-    <div class="card-today-at d-flex gap-2">
+    <div class="card-today-at d-flex gap-2 p-3">
 
     </div>
 </section>
 
 <script>
-    // init();
+    init();
 
     btnEditSuggRender = $('.nav-btn-edit-sugg');
     if (getUserRolIdLocalStorageValue() == 2) { loadPartialView('Modules/btn-edit-sugg', btnEditSuggRender); }

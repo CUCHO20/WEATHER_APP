@@ -319,15 +319,15 @@ function showWeatherFiveOvercastInfo(fiveoverData) {
         let html = `
         <div class="card-slider">
             <div class="card-glass">
-                <span class="text-body-secondary">${hoursFormatted}</span>
+                <span class="text-light">${hoursFormatted}</span>
                 <h3 class="my-2"><strong><img src="/www/Public/img/weather_icons/${weatherIcon}.png" width="55"></strong></h3>
-                <span class="text-body-secondary">${parseInt(element.main.temp)}&deg;</span>
+                <span class="text-light">${parseInt(element.main.temp)}&deg;</span>
             </div>
 
-            <div class="card-glass mt-2">
-                <span class="text-body-secondary">${hoursFormatted}</span>
+            <div class="card-glass mt-2" style="background: #fff;">
+                <span class="text-body"><strong>${hoursFormatted}</strong></span>
                 <h3 class="my-2"><img src="/www/Public/img/weather_icons/direction.png" style="font-size: x-large; transform: rotate(${element.wind.deg - 100}deg);"></h3>
-                <span class="text-body-secondary">${parseInt(mps_to_kmh(element.wind.speed))} km/h</span>
+                <span class="text-body"><strong>${parseInt(mps_to_kmh(element.wind.speed))} km/h</strong></span>
             </div>
         </div>
         `;
