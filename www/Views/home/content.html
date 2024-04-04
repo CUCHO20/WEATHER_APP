@@ -1,5 +1,5 @@
-<section class="container pt-5" id="main-weather">
-    <div class="d-flex align-items-center justify-content-center">
+<section class="container pt-5 vh-100" id="main-weather">
+    <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="content-weather d-flex flex-column align-items-center justify-content-center">
             <h2 class="text-center text-body mb-0 pb-3"><strong>Ahora</strong></h2>
             <img width="100" class="icon-weather text-center m-0 py-3">
@@ -21,7 +21,7 @@
     </div>
 </section>
 
-<section class="container my-5 d-flex flex-column align-items-center justify-content-center" id="map-show">
+<section class="container-fluid position-relative my-5 d-flex flex-column align-items-center justify-content-center" style="min-width: 280px;" id="map-show">
     <div class="text-center">
         <h3>
             <span class="text-body-secondary">Ubicación</span>
@@ -29,14 +29,16 @@
         </h3>
     </div>
 
-    <ol class="nav nav-pills flex-column mx-4 bg-light" style="min-width: 280px;">
-        <li class="nav-item">
-            <div id="map" style="height: 180px;"></div>
-        </li>
-    </ol>
+    <div class="px-5 w-100">
+        <ol class="nav nav-pills flex-column bg-light">
+            <li class="nav-item">
+                <div id="map" style="height: 200px;"></div>
+            </li>
+        </ol>
+    </div>
 </section>
 
-<section class="container my-5 d-flex flex-column align-items-center justify-content-center" id="overcast-5-weather">
+<section class="container my-5 d-flex flex-column align-items-center justify-content-center" style="min-width: 280px;" id="overcast-5-weather">
     <div class="text-center">
         <h3>
             <span class="text-body-secondary">Pronóstico</span>
@@ -44,183 +46,191 @@
         </h3>
     </div>
 
-    <ol class="nav nav-pills flex-column mx-4 bg-light" style="min-width: 280px;">
+    <div class="px-5 w-100">
+        <ol class="nav nav-pills flex-column bg-light">
+    
+            <li class="nav-item">
+                <div class="show-fiveover list-group list-over d-flex gap-1">
+    
+                </div>
+            </li>
+    
+        </ol>
+    </div>
 
-        <li class="nav-item">
-            <div class="show-fiveover list-group list-over d-flex gap-1">
-
-            </div>
-        </li>
-
-    </ol>
 </section>
 
-<section class="container-fluid my-5 d-flex flex-column align-items-center justify-content-center" id="today-highlights">
+<section class="container my-5 d-flex flex-column align-items-center justify-content-center" style="min-width: 280px;" id="today-highlights">
     <div class="text-center">
         <h3>
             <span class="text-body-secondary">Pronóstico de </span>
             <strong>Hoy</strong>
         </h3>
     </div>
-    <ol class="nav nav-pills flex-column mx-4 bg-light gap-3" style="min-width: 280px;">
 
-        <li class="nav-item">
-            <div class="list-group list-over">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Calidad del aire</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-around py-2">
-                    <div>
-                        <i class="bi bi-wind" style="font-size: x-large;"></i>
-                    </div>
-                    <div>
-                        <p class="m-0 p-0"><span id="compon-pm" style="font-weight: bold;"></span> PM2.5</p>
-                        <p class="m-0 p-0"><span id="compon-no" style="font-weight: bold;"></span> NO2</p>
-                    </div>
-                    <div>
-                        <p class="m-0 p-0"><span id="compon-so" style="font-weight: bold;"></span> SO2.5</p>
-                        <p class="m-0 p-0"><span id="compon-o" style="font-weight: bold;"></span> O3</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item">
-            <div class="list-group">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Atardecer y amanecer</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-around py-2">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="me-2 pb-1">
-                            <i class="bi bi-sunrise" style="font-size: x-large;"></i>
-                        </div>
-                        <div class="flex-column">
-                            <div>
-                                <p class="m-0 p-0"><strong>Amanecer</strong></p>
-                            </div>
-                            <div>
-                                <p class="sunrise-w m-0 p-0"></p>
-                            </div>
+    <div class="px-5 w-100">
+        <ol class="nav nav-pills flex-column bg-light gap-3">
+    
+            <li class="nav-item">
+                <div class="list-group list-over">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Calidad del aire</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="me-2 pb-1">
-                            <i class="bi bi-sunset" style="font-size: x-large;"></i>
+                    <div class="d-flex align-items-center justify-content-around py-2">
+                        <div>
+                            <i class="bi bi-wind" style="font-size: x-large;"></i>
                         </div>
-                        <div class="flex-column">
-                            <div>
-                                <p class="m-0 p-0"><strong>Atardecer</strong></p>
-                            </div>
-                            <div>
-                                <p class="sunset-w m-0 p-0"></p>
-                            </div>
+                        <div>
+                            <p class="m-0 p-0"><span id="compon-pm" style="font-weight: bold;"></span> PM2.5</p>
+                            <p class="m-0 p-0"><span id="compon-no" style="font-weight: bold;"></span> NO2</p>
+                        </div>
+                        <div>
+                            <p class="m-0 p-0"><span id="compon-so" style="font-weight: bold;"></span> SO2.5</p>
+                            <p class="m-0 p-0"><span id="compon-o" style="font-weight: bold;"></span> O3</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </li>
-
-        <li class="nav-item d-flex gap-3">
-            <div class="list-group col">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Humedad</p>
+            </li>
+    
+            <li class="nav-item">
+                <div class="list-group">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Atardecer y amanecer</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-around py-2">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="me-2 pb-1">
+                                <i class="bi bi-sunrise" style="font-size: x-large;"></i>
+                            </div>
+                            <div class="flex-column">
+                                <div>
+                                    <p class="m-0 p-0"><strong>Amanecer</strong></p>
+                                </div>
+                                <div>
+                                    <p class="sunrise-w m-0 p-0"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="me-2 pb-1">
+                                <i class="bi bi-sunset" style="font-size: x-large;"></i>
+                            </div>
+                            <div class="flex-column">
+                                <div>
+                                    <p class="m-0 p-0"><strong>Atardecer</strong></p>
+                                </div>
+                                <div>
+                                    <p class="sunset-w m-0 p-0"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-between px-3 py-2">
-                    <div class="">
-                        <i class="bi bi-cloud-fog2" style="font-size: x-large;"></i>
+            </li>
+    
+            <li class="nav-item d-flex gap-3">
+                <div class="list-group col">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Humedad</p>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <p class="humidity-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="list-group col">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Presión</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between px-3 py-2">
-                    <div class="">
-                        <i class="bi bi-moisture" style="font-size: x-large;"></i>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <p class="pressure-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+                        <div class="">
+                            <i class="bi bi-cloud-fog2" style="font-size: x-large;"></i>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p class="humidity-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-
-        <li class="nav-item d-flex gap-3">
-            <div class="list-group col">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Visibilidad</p>
+                <div class="list-group col">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Presión</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+                        <div class="">
+                            <i class="bi bi-moisture" style="font-size: x-large;"></i>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p class="pressure-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-between px-3 py-2">
-                    <div>
-                        <i class="bi bi-clouds" style="font-size: x-large;"></i>
+            </li>
+    
+            <li class="nav-item d-flex gap-3">
+                <div class="list-group col">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Visibilidad</p>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <p class="visibility-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="list-group col">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Sensación</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between px-3 py-2">
-                    <div class="">
-                        <i class="bi bi-thermometer-half" style="font-size: x-large;"></i>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <p class="feels-like-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+                        <div>
+                            <i class="bi bi-clouds" style="font-size: x-large;"></i>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p class="visibility-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-
-    </ol>
+                <div class="list-group col">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Sensación</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+                        <div class="">
+                            <i class="bi bi-thermometer-half" style="font-size: x-large;"></i>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p class="feels-like-w m-0 p-0" style="font-size: small; font-weight: bold;"></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+    
+        </ol>
+    </div>
 </section>
 
-<section class="container my-5 d-flex flex-column align-items-center justify-content-center" id="map-show">
+<section class="container my-5 d-flex flex-column align-items-center justify-content-center" style="min-width: 280px;" id="suggest">
     <div class="text-center">
         <h3>
             <strong>Sugerencias</strong>
         </h3>
     </div>
 
-    <ol class="nav nav-pills position-relative flex-column mx-4 bg-light" style="min-width: 280px;">
-        <div class="nav-btn-edit-sugg position-absolute top-0 start-100 translate-middle"></div>
-        <p class="d-flex justify-content-between">
-            <strong>Calidad del aire:</strong>
-            <span id="aqi-lvl" class="px-2 rounded text-white"></span>
-        </p>
-        <p class="aqi-txt">
-        </p>
-        <li class="nav-item">
-            <div class="list-group list-over">
-                <div class="bg-info rounded-top">
-                    <div class="col-12 ps-2">
-                        <p class="text-light m-0 p-0">Considere tomar en cuenta las siguientes sugerencias:</p>
+    <div class="px-5 w-100">
+        <ol class="nav nav-pills position-relative flex-column bg-light">
+            <div class="nav-btn-edit-sugg position-absolute top-0 start-100 translate-middle"></div>
+            <p class="d-flex justify-content-between">
+                <strong>Calidad del aire:</strong>
+                <span id="aqi-lvl" class="px-2 rounded text-white"></span>
+            </p>
+            <p class="aqi-txt">
+            </p>
+            <li class="nav-item">
+                <div class="list-group list-over">
+                    <div class="bg-info rounded-top">
+                        <div class="col-12 ps-2">
+                            <p class="text-light m-0 p-0">Considere tomar en cuenta las siguientes sugerencias:</p>
+                        </div>
                     </div>
+                    <ol class="aqi-list py-2">
+                    </ol>
                 </div>
-                <ol class="aqi-list py-2">
-                </ol>
-            </div>
-        </li>
-    </ol>
+            </li>
+        </ol>
+    </div>
 </section>
 
 <section class="container my-5" id="today-at">
@@ -237,7 +247,7 @@
 </section>
 
 <script>
-    init();
+    // init();
 
     btnEditSuggRender = $('.nav-btn-edit-sugg');
     if (getUserRolIdLocalStorageValue() == 2) { loadPartialView('Modules/btn-edit-sugg', btnEditSuggRender); }

@@ -7,6 +7,8 @@
     </author>
     <icon src="www/Public/img/Weather.png" />
     <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="geo:*" />
