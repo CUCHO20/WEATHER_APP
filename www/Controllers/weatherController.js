@@ -243,7 +243,7 @@ function setMapInfo(lat, lon) {
         map.remove();
     }
 
-    map = L.map('map').setView([lat, lon], 10);
+    map = L.map('map').setView([lat, lon], 15);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
