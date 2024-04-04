@@ -289,7 +289,7 @@ function showWeatherFiveOvercastInfo(fiveoverData) {
         let html = `
             <div class="px-2 py-2 d-flex align-items-center justify-content-between" style="font-size: small">
                 <div class="d-flex gap-2">
-                    <img src="/www/Public/img/weather_icons/${weatherIcon}.png" width="25" class="fiveover-icon">
+                    <img src="Public/img/weather_icons/${weatherIcon}.png" width="25" class="fiveover-icon">
                     <h5 class="fiveover-info mb-0" style="font-weight: bold;">
                         ${parseInt(element.main.temp)}&deg;<sup>c</sup>
                     </h5>
@@ -320,13 +320,13 @@ function showWeatherFiveOvercastInfo(fiveoverData) {
         <div class="card-slider">
             <div class="card-glass">
                 <span class="text-light">${hoursFormatted}</span>
-                <h3 class="my-2"><strong><img src="/www/Public/img/weather_icons/${weatherIcon}.png" width="55"></strong></h3>
+                <h3 class="my-2"><strong><img src="Public/img/weather_icons/${weatherIcon}.png" width="55"></strong></h3>
                 <span class="text-light">${parseInt(element.main.temp)}&deg;</span>
             </div>
 
             <div class="card-glass mt-2" style="background: #fff;">
                 <span class="text-body"><strong>${hoursFormatted}</strong></span>
-                <h3 class="my-2"><img src="/www/Public/img/weather_icons/direction.png" style="font-size: x-large; transform: rotate(${element.wind.deg - 100}deg);"></h3>
+                <h3 class="my-2"><img src="Public/img/weather_icons/direction.png" style="font-size: x-large; transform: rotate(${element.wind.deg - 100}deg);"></h3>
                 <span class="text-body"><strong>${parseInt(mps_to_kmh(element.wind.speed))} km/h</strong></span>
             </div>
         </div>
@@ -351,7 +351,7 @@ function showWeatherInfo(weatherData) {
     // TODAY SECTION
 
     $('.status-weather').text(parseInt(weatherData.main.temp)).append(`<span class="text-info">&deg;<sup>c</sup></span>`);
-    $('.icon-weather').attr('src', `/www/Public/img/weather_icons/${weatherData.weather[0].icon}.png`);
+    $('.icon-weather').attr('src', `Public/img/weather_icons/${weatherData.weather[0].icon}.png`);
 
     let unixTime = weatherData.dt;
     let date = new Date(unixTime * 1000); // Se multiplica por 1000 para convertir segundos a milisegundos
