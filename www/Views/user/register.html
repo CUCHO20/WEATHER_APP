@@ -7,6 +7,10 @@
     </nav>
 </div>
 
+<div class="show-alert-register px-3">
+
+</div>
+
 <div class="container my-3">
     <div class="d-flex flex-column align-items-center justify-content-center">
         <ol class="nav nav-pills bg-light justify-content-center mx-5" style="min-width: 300px;">
@@ -48,12 +52,12 @@
 </div>
 
 <script>
-     dropdownBtnUserOptions('login');
+    dropdownBtnUserOptions('login');
 
     // Get the home-route class from the bread to go back home
     document.querySelector('.home-route').addEventListener('click', function () {
         loadPartialView('home/content', appRender);
-        
+
         dropdownBtnUserOptions('show');
         btnSearch('show');
     });
@@ -71,15 +75,37 @@
     $('.btn-register-data').on('click', function () {
         let userName = $('#user_name').val();
         let userEmail = $('#email').val();
-        let userPass = $('#inputPassword5').val();
+        let userPass = $('#user-password').val();
 
-        let formData = {
-            user_name: userName,
-            email: userEmail,
-            password: userPass,
-            id_rol: 1
+        if (userName != '' && userEmail != '' && userPass != '') {
+
+            let emailArray = userEmail.split('');
+            if (emailArray.includes('@') == false || emailArray.indexOf('@') + 2 >= emailArray.length) {
+                $('.show-alert-register').empty().append(`
+                <div class="alert alert-dismissible alert-danger text-light">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                    <strong>Lo sentimos!</strong> El correo proporcionado no cumple con los requisitos. Este debe contener "<strong>@</strong>" y "<strong>gmail.com, uttn.mx, ...</strong>".
+                </div>
+                `);
+            } else {
+                let formData = {
+                    user_name: userName,
+                    email: userEmail,
+                    password: userPass,
+                    id_rol: 1
+                }
+    
+                userRegister(formData);
+            }
+
+        } else if (userName == '' || userEmail == '' || userPass == '') {
+            $('.show-alert-register').empty().append(`
+            <div class="alert alert-dismissible alert-danger text-light">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                <strong>Lo sentimos!</strong> No puede dejar espacios en blanco. <strong>Vuelvalo a intentar.</strong>
+            </div>
+            `);
         }
 
-        userRegister(formData);
     });
 </script>

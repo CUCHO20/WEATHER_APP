@@ -11,6 +11,9 @@
             Nivel aqi: <strong class="aqi-lvl"></strong>
         </p>
     </div>
+    <div class="show-alert-edit-sugg px-3 my-2">
+
+    </div>
     <form>
         <textarea class="suggestion form-control" aria-label="With textarea"></textarea>
 
@@ -30,21 +33,24 @@
         let id_suggestion = idSugg;
         let id_wstatus = parseInt($('.aqi-lvl').text());
         let suggestion = $('.suggestion').val();
+        let status = $('.status-to-put').prop('checked');
 
-        if ($('.status-to-put').prop('checked') === true) {
-            isChecked = true;
+        if (suggestion != '') {
+            let updateSuggData = {
+                id_suggestion: id_suggestion,
+                id_wstatus: id_wstatus,
+                suggestion1: suggestion,
+                status: status
+            }
+    
+            getSuggestionToPut(updateSuggData, id_suggestion);
         } else {
-            isChecked = false;
+            $('.show-alert-edit-sugg').empty().append(`
+            <div class="alert alert-dismissible alert-danger text-light">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                <strong>Lo sentimos!</strong> No puede dejar el espacio en blanco.
+            </div>
+            `);
         }
-        let status = isChecked;
-
-        let updateSuggData = {
-            id_suggestion: id_suggestion,
-            id_wstatus: id_wstatus,
-            suggestion1: suggestion,
-            status: status
-        }
-
-        getSuggestionToPut(updateSuggData, id_suggestion);
     }
 </script>

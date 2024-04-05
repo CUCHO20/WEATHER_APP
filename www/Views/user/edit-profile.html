@@ -52,6 +52,7 @@
                 </div>
             </li>
         </ol>
+        
         <ol class="nav nav-pills bg-light mt-4">
             <div class="col-12 bg-info rounded-top">
                 <h1 class="text-light m-0 ps-2 py-2" style="font-weight: 900;">Datos</h1>
@@ -78,6 +79,9 @@
                 </form>
             </li>
         </ol>
+        <div class="show-alert-edit-profile px-2 mt-3">
+            
+        </div>
         <div class="d-flex align-items-center justify-content-center mt-3">
             <button type="button" class="btn-edit btn btn-info bg-info text-light"
                 style="border-radius: 10px;">Guardar</button>
@@ -119,17 +123,37 @@
         let email = $('.user-email-val').val();
         let password = $('.user-password-val').val();
 
-        let updateData = {
-            bgcolor: bgcolor,
-            email: email,
-            id_rol: id_rol,
-            id_user: id,
-            imagename: imagename,
-            password: password,
-            user_name: user_name
+        if (user_name != '' && email != '' && password != '') {
+            let emailArray = email.split('');
+            if (emailArray.includes('@') == false || emailArray.indexOf('@') + 2 >= emailArray.length) {
+                $('.show-alert-edit-profile').empty().append(`
+                <div class="alert alert-dismissible alert-danger text-light m-0 my-2">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                    <strong>Lo sentimos!</strong> El correo proporcionado no cumple con los requisitos. Este debe contener "<strong>@</strong>" y "<strong>gmail.com, uttn.mx, ...</strong>".
+                </div>
+                `);
+            } else {
+                let updateData = {
+                    bgcolor: bgcolor,
+                    email: email,
+                    id_rol: id_rol,
+                    id_user: id,
+                    imagename: imagename,
+                    password: password,
+                    user_name: user_name
+                }
+        
+                updateUserData(updateData, getUserIdLocalStorageValue());
+            } 
+        } else if (user_name == '' || email == '' || password == '') {
+            $('.show-alert-edit-profile').empty().append(`
+            <div class="alert alert-dismissible alert-danger text-light m-0 my-2">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                <strong>Lo sentimos!</strong> No puede dejar espacios en blanco. <strong>Vuelvalo a intentar.</strong>
+            </div>
+            `);
         }
 
-        updateUserData(updateData, getUserIdLocalStorageValue());
     });
 
     getUserData(getUserIdLocalStorageValue());
