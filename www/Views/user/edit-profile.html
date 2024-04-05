@@ -112,22 +112,14 @@
         $(this).addClass('selected');
     });
 
-    var user_rol
-    var id_rol
-    var user_name
-    var email
-    var password
-    var id = parseInt(getUserIdLocalStorageValue())
-
     $('.btn-edit').click(function () {
-        user_rol = $('.user-rol').text();
-        console.log(user_rol);
-        user_rol == "AdministradorAdministrador" ? id_rol = 2 : id_rol = 1;
-        user_name = $('.user-name-val').val();
-        email = $('.user-email-val').val();
-        password = $('.user-password-val').val();
+        let id = parseInt(getUserIdLocalStorageValue())
+        let id_rol = parseInt(getUserRolIdLocalStorageValue());
+        let user_name = $('.user-name-val').val();
+        let email = $('.user-email-val').val();
+        let password = $('.user-password-val').val();
 
-        var updateData = {
+        let updateData = {
             bgcolor: bgcolor,
             email: email,
             id_rol: id_rol,
