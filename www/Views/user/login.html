@@ -44,18 +44,14 @@
 </div>
 
 <script>
-    $('.btn-register').show();
-    $('.btn-login').hide();
-    $('.dropdown-divider').hide();
+    dropdownBtnUserOptions('register');
 
     // Get the home-route class from the bread to go back home
     document.querySelector('.home-route').addEventListener('click', function () {
         loadPartialView('home/content', appRender);
-        $('.btn-register').show();
-        $('.btn-login').show();
-        $('.dropdown-divider').show();
 
-        $('.btn-search').show();
+        dropdownBtnUserOptions('show');
+        btnSearch('show');
     });
 
     // Get the btn-register-bach to return to the register form

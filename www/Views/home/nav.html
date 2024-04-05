@@ -22,10 +22,9 @@
                     aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="btn-show-info dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDark"
+                    <a class="btn-show-info dropdown-item mb-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDark"
                         aria-controls="offcanvasDark">Ver perfil</a>
-                    <div class="dropdown-divider-user"></div>
-                    <a class="dropdown-item btn-remove-id">Cerrar sesión</a>
+                    <a class="btn-remove-id dropdown-item">Cerrar sesión</a>
                 </div>
             </div>
 
@@ -35,9 +34,8 @@
                     <i class="bi bi-person text-light" style="font-size: x-large;"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item btn-login">Iniciar sesión</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item btn-register">Registrarse</a>
+                    <a class="btn-login dropdown-item mb-2">Iniciar sesión</a>
+                    <a class="btn-register dropdown-item">Registrarse</a>
                 </div>
             </div>
         </div>
@@ -60,10 +58,10 @@
         • Secciones (Botones con diff. dropdowns) a mostrar cuando la aplicación arranque.
     */
 
-    $('.btn-info-user').hide(); // Ocultar 
-    $('.btn-user').show(); // Mostrar
-    $('.btn-search').show();
-
+    btnSearch('show');
+    btnUser('show');
+    btnInfoUser('hide');
+    
 
     /*
         • Variables con scope global en donde se selecciona
@@ -105,13 +103,12 @@
     $('.btn-remove-id').click(function () {
         removeUserIdLocalStorageValue();
         removeUserRolIdLocalStorageValue();
+        
         loadPartialView('home/content', appRender);
-        $('.btn-info-user').hide();
-
-        $('.btn-user').show();
-        $('.btn-register').show();
-        $('.btn-login').show();
-        $('.dropdown-divider').show();
+        
+        btnInfoUser('hide');
+        btnUser('show');
+        dropdownBtnUserOptions('show');
     });
 
     $('.btn-show-search').click(function () {
@@ -128,12 +125,15 @@
     // Get the login.html document to render into appRender
     document.querySelector('.btn-login').addEventListener('click', function () {
         loadPartialView('user/login', appRender);
-        $('.btn-search').hide();
+        btnSearch('hide');
     });
 
     // Get the register.html document to render into appRender
     document.querySelector('.btn-register').addEventListener('click', function () {
         loadPartialView('user/register', appRender);
-        $('.btn-search').hide();
+        btnSearch('hide');
     });
+
+
+    getUserData(getUserIdLocalStorageValue());
 </script>

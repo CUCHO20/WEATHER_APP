@@ -25,9 +25,7 @@
 <script>
     $('.btn-edit-user').click(function () {
         loadPartialView('user/edit-profile', appRender);
-        $('.btn-search').hide();
-        $('.btn-info-user').hide();
+        btnSearch('hide');
+        btnInfoUser('hide');
     });
-
-    getUserData(getUserIdLocalStorageValue());
 </script>

@@ -140,8 +140,8 @@
 
 
 <script>
-    $('.btn-search').hide();
-    $('.btn-info-user').hide();
+    btnSearch('hide');
+    btnInfoUser('hide');
 
     editSuggRender = $('.edit-sugg');
     addSuggRender = $('.add-sugg');
@@ -152,8 +152,8 @@
 
     $('.home-route').click(function () {
         loadPartialView('home/content', appRender);
-        $('.btn-search').show();
-        $('.btn-info-user').show();
+        btnSearch('show');
+        btnInfoUser('show');
     });
 
     getAllSuggestions();

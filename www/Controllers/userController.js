@@ -120,6 +120,8 @@ function updateUserData(updateData, id) {
         success: function (response) {
             console.log('Usuario actualizado exitosamente:', response);
             loadPartialView('home/content', appRender);
+            btnInfoUser('show');
+            btnSearch('show');
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Error:', textStatus, errorThrown);
@@ -143,12 +145,11 @@ function updateUserData(updateData, id) {
 */
 
 function showUserIcon(img) { // Función para mostrar el icono correspondiente basado en el estado del usuario
-    $('.btn-user').hide();
+    btnUser('hide');
+    btnInfoUser('show');
+    btnSearch('show');
 
-    $('.btn-info-user').show();
-    $('.btn-show-info').show();
-    $('.dropdown-divider-user').show();
-    $('.btn-remove-id').show();
+    dropdownBtnInfoUserOptions('show');
 
     $('.user-icon-btn').empty();
     $('.user-icon-btn').addClass(img || "cat-one");

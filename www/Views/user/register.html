@@ -48,18 +48,14 @@
 </div>
 
 <script>
-    $('.btn-login').show();
-    $('.btn-register').hide();
-    $('.dropdown-divider').hide();
+     dropdownBtnUserOptions('login');
 
     // Get the home-route class from the bread to go back home
     document.querySelector('.home-route').addEventListener('click', function () {
         loadPartialView('home/content', appRender);
-        $('.btn-register').show();
-        $('btn-login').show();
-        $('.dropdown-divider').show();
-
-        $('.btn-search').show();
+        
+        dropdownBtnUserOptions('show');
+        btnSearch('show');
     });
 
     $('.btn-attr').click(function () {
