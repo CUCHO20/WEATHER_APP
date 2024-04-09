@@ -70,3 +70,9 @@ function dropdownBtnInfoUserOptions(action) {
         ? $('.btn-show-info .btn-remove-id').show()
         : $('.btn-show-info .btn-remove-id').hide();
 }
+
+function showAlertSuccess(response) {
+    $('.alert-login-class-success').addClass(response.Message_Classes);
+    $('.user-login').text(response.value.user_name);
+    $('.user-message').text(response.Message);
+}

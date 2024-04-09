@@ -76,16 +76,17 @@ function userLogin(formLogin) {
         success: function (response) {
             console.log(response.value.id_rol)
             if (response.Success == true) {
+                console.log(response);
                 console.log('Inicio de sesión exitoso:', response.Message);
                 console.log('ID de usuario:', getUserIdLocalStorageValue("id_user"));
 
                 loadPartialView('home/content', appRender);
                 loadPartialView('Modules/alert-login-success', showAlertLoginSuccess);
-                
+
                 saveUserIdLocalStorageValue("id_user", response.value.id_user);
                 saveUserRolIdLocalStorageValue("id_rol", response.value.id_rol);
-                
-                showAlertSuccess(response.value.user_name, response.Message);
+
+                showAlertSuccess(response);
                 showUserIcon(response.value.imagename);
                 getUserData(parseInt(response.value.id_user));
             } else {
@@ -145,11 +146,6 @@ function updateUserData(updateData, id) {
           del usuario como referencia a la hora de
           actualizarlos.
 */
-
-function showAlertSuccess(user, message) {
-    $('#user-login').text(user);
-    $('#user-message').text(message);
-}
 
 function showUserIcon(img) { // Función para mostrar el icono correspondiente basado en el estado del usuario
     btnUser('hide');
