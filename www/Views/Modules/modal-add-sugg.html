@@ -32,8 +32,7 @@
     $('#btn-save-sugg').click(function () {
         let statusToAdd = $('.status-to-add').prop('checked');
         let suggestion = $('#input-sugg').val();
-        let intId = parseInt($('.aqi-lvl').text());
-        let id_wsatus = intId;
+        let id_wstatus = parseInt($('.aqi-lvl').text());
 
         if (suggestion != '') {
             let addSuggData = {

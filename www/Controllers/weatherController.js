@@ -33,15 +33,17 @@ function initBySearch(lat, lon) {
 // Funciones AJAX para la consulta de datos
 
 function getCoordinatesByNameForInput(location) {
-    let url = getGeocodingDataByHttp + "direct?q=" + location + "&limit=5&appid=" + apiKey;
+    // let url = getGeocodingDataByHttp + "direct?q=" + location + "&limit=5&appid=" + apiKey;
+    let url = geocodingWeather + "?location=" + location;
 
     $.ajax({
         url: url,
         method: 'GET',
         dataType: 'json',
         success: function (response) {
-            response.length > 0
-            ? initBySearch(response[0].lat, response[0].lon)
+            geocodingLimitData = JSON.parse(response);
+            geocodingLimitData.length > 0
+            ? initBySearch(geocodingLimitData[0].lat, geocodingLimitData[0].lon)
             : loadPartialView('error404/not-found', appRender);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -51,16 +53,18 @@ function getCoordinatesByNameForInput(location) {
 }
 
 function getCoordinatesByName(location) {
-    let url = getGeocodingDataByHttp + "direct?q=" + location + "&limit=5&appid=" + apiKey;
+    // let url = getGeocodingDataByHttp + "direct?q=" + location + "&limit=5&appid=" + apiKey;
+    let url = geocodingWeather + "?location=" + location;
 
     $.ajax({
         url: url,
         method: 'GET',
         dataType: 'json',
         success: function (response) {
-            console.log(response)
+            console.log(response);
+            geocodingData = JSON.parse(response);
             $('.item-result').empty();
-            geocodingDataListInfo(response);
+            geocodingDataListInfo(geocodingData);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get geocoding data: " + textStatus + " - " + errorThrown);
@@ -118,22 +122,16 @@ function getWeatherFiveOvecast(lat, lon) {
 }
 
 function getWeatherAirPolution(lat, lon) {
-    // let url = getWeatherDataByHttp + "air_pollution?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
-    // let url = currentWeatherAirPollutionData + lat + '/' + lon;
+    let url = currentWeatherAirPollutionData + "?lat=" + lat + "&lon=" + lon;
 
     $.ajax({
-        url: getWeatherDataByHttp + 'air_pollution',
+        url: url,
         method: 'GET',
-        dataType: 'jsonp',
-        data: {
-            lat: lat,
-            lon: lon,
-            appid: apiKey
-        },
+        dataType: 'json',
         success: function (response) {
-            airpolutionData = response;
+            airpolutionData = JSON.parse(response);
             showWeatherAirPolutionInfo(airpolutionData);
-            // console.log("Air polution data:", airpolutionData);
+            console.log("Air polution data:", airpolutionData);
 
             // aqiLvl = airpolutionData.list[0].main.aqi;
             // getSuggestions(aqiLvl);
