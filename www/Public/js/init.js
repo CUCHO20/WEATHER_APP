@@ -71,8 +71,44 @@ function dropdownBtnInfoUserOptions(action) {
         : $('.btn-show-info .btn-remove-id').hide();
 }
 
+var userLoginDataAlert
+var classLoginDataAlert
+var messageLoginDataAlert
+
 function showAlertSuccess(response) {
-    $('.alert-login-class-success').addClass(response.Message_Classes);
-    $('.user-login').text(response.value.user_name);
-    $('.user-message').text(response.Message);
+    console.log(response.Message)
+    classLoginDataAlert = response.Message_Classes;
+    userLoginDataAlert = response.value.user_name;
+    messageLoginDataAlert = response.Message;
+}
+
+// Variables y arreglos declarados y funciones con operaciones a utilizar
+let weatherData
+
+let map = null
+
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
+const getTime = function (timeUnix, timezone) {
+    const date = new Date((timeUnix + timezone) * 1000);
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
+    const period = hours >= 12 ? "PM" : "AM";
+
+    return `${hours % 12 || 12}:${minutes} ${period}`;
+}
+
+const getHours = function (timeUnix, timezone) {
+    const date = new Date((timeUnix + timezone) * 1000);
+    const hours = date.getUTCHours();
+    const period = hours >= 12 ? "PM" : "AM";
+
+    return `${hours % 12 || 12} ${period}`;
+}
+
+const mps_to_kmh = mps => {
+    const mph = mps * 3600;
+    return mph / 1000;
 }

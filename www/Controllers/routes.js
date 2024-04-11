@@ -1,6 +1,5 @@
 const localServer = "http://localhost:53838/api/"
 const remoteServer = ""
-const localSource = "/www/"
 
 const env = localServer
 
@@ -19,6 +18,9 @@ const deleteSuggestion = env + "Suggestions/" // Method DELETE
 const updateSuggestion = env + "Suggestions/" // Method PUT
 
 // Weather API
+const currentWeatherData = env + "weather/getweather/coord/" // + {lat}/{lon}
+const currentWeatherAirPollutionData = env + "weather/getairpollution/coord/" // + {lat}/{lon}
+
 const apiKey = "bbb366d2d2d593fd4c87ec503493363c" // API Key
 const getWeatherData = "https://api.openweathermap.org/data/2.5/" // Method GET
 const getWeatherDataByHttp = "http://api.openweathermap.org/data/2.5/" // Method GET

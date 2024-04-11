@@ -1,5 +1,11 @@
-<div class="alert-login-class-success alert alert-dismissible text-light">
+<div class="d-flex flex-column align-items-start justify-content-center alert-login-class-success alert alert-dismissible text-light">
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
     <strong>Felicidades <span class="user-login"></span>!</strong>
-    <p class="user-message"></p>
+    <p class="user-message m-0"></p>
 </div>
+
+<script>
+    $('.user-login').text(userLoginDataAlert);
+    $('.alert-login-class-success').addClass(classLoginDataAlert);
+    $('.user-message').text(messageLoginDataAlert);
+</script>

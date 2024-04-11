@@ -14,7 +14,7 @@ function init() {
         console.error("Error: " + error.message);
         let lat = 26.0340803;
         let lon = -98.455297;
-        getWeatherByDefaultCoord(lat, lon);
+        getWeatherByCoordinates(lat, lon);
         getWeatherFiveOvecast(lat, lon);
         getWeatherAirPolution(lat, lon);
         setMapInfo(lat, lon);
@@ -28,67 +28,6 @@ function initBySearch(lat, lon) {
     getWeatherFiveOvecast(lat, lon);
     getWeatherAirPolution(lat, lon);
     setMapInfo(lat, lon);
-}
-
-// Variables y arreglos declarados y funciones con operaciones a utilizar
-let weatherData
-
-let map = null
-
-/*
-const aqiText = {
-    1: {
-        level: "Bueno",
-        message: "La calidad del aire se considera satisfactoria y la contaminación atmosférica supone poco o ningún riesgo.",
-        class: "bg-success"
-    },
-    2: {
-        level: "Regular",
-        message: "La calidad del aire es aceptable; sin embargo, para algunos contaminantes puede haber una preocupación moderada por la salud para un número muy pequeño de personas que son inusualmente sensibles a la contaminación del aire.",
-        class: "bg-success"
-    },
-    3: {
-        level: "Moderado",
-        message: "Los miembros de grupos sensibles pueden experimentar efectos sobre la salud. No es probable que afecte al público en general.",
-        class: "bg-warning"
-    },
-    4: {
-        level: "Deficiente",
-        message: "Todo el mundo puede empezar a experimentar efectos sobre la salud; los miembros de grupos sensibles pueden experimentar efectos más graves sobre la salud.",
-        class: "bg-warning"
-    },
-    5: {
-        level: "Muy deficiente",
-        message: "Advertencias sanitarias de condiciones de emergencia. Es más probable que afecte a toda la población.",
-        class: "bg-danger"
-    }
-}
-*/
-
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
-const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-
-const getTime = function (timeUnix, timezone) {
-    const date = new Date((timeUnix + timezone) * 1000);
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
-    const period = hours >= 12 ? "PM" : "AM";
-
-    return `${hours % 12 || 12}:${minutes} ${period}`;
-}
-
-const getHours = function (timeUnix, timezone) {
-    const date = new Date((timeUnix + timezone) * 1000);
-    const hours = date.getUTCHours();
-    const period = hours >= 12 ? "PM" : "AM";
-
-    return `${hours % 12 || 12} ${period}`;
-}
-
-const mps_to_kmh = mps => {
-    const mph = mps * 3600;
-    return mph / 1000;
 }
 
 // Funciones AJAX para la consulta de datos
@@ -130,34 +69,23 @@ function getCoordinatesByName(location) {
 }
 
 function getWeatherByCoordinates(lat, lon) {
-    let url = getWeatherData + "weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
+    // let url = getWeatherData + "weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
+    // let url = currentWeatherData + lat + "/" + lon;
 
     $.ajax({
-        url: url,
+        url: getWeatherData + 'weather',
         method: 'GET',
-        dataType: 'json',
-        success: function (response) {
-            console.log("Weather data:", response);
-            weatherData = response;
-            showWeatherInfo(weatherData);
+        dataType: 'jsonp',
+        data: {
+            lat: lat,
+            lon: lon,
+            units: 'metric',
+            appid: apiKey
         },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error("Error in get weather data: " + textStatus + " - " + errorThrown);
-        }
-    });
-}
-
-function getWeatherByDefaultCoord(lat, lon) {
-    let url = getWeatherData + "weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
-
-    $.ajax({
-        url: url,
-        method: 'GET',
-        dataType: 'json',
         success: function (response) {
-            console.log("Weather data:", response);
             weatherData = response;
             showWeatherInfo(weatherData);
+            // console.log("Weather data:", weatherData);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get weather data: " + textStatus + " - " + errorThrown);
@@ -166,16 +94,22 @@ function getWeatherByDefaultCoord(lat, lon) {
 }
 
 function getWeatherFiveOvecast(lat, lon) {
-    let url = getWeatherData + "forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
+    // let url = getWeatherData + "forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
 
     $.ajax({
-        url: url,
+        url: getWeatherData + 'forecast',
         method: 'GET',
-        dataType: 'json',
+        dataType: 'jsonp',
+        data: {
+            lat: lat,
+            lon: lon,
+            units: 'metric',
+            appid: apiKey
+        },
         success: function (response) {
-            console.log("Forecast data:", response);
             fiveoverData = response;
             showWeatherFiveOvercastInfo(fiveoverData);
+            // console.log("Forecast data:", fiveoverData);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get weather data: " + textStatus + " - " + errorThrown);
@@ -184,19 +118,25 @@ function getWeatherFiveOvecast(lat, lon) {
 }
 
 function getWeatherAirPolution(lat, lon) {
-    let url = getWeatherDataByHttp + "air_pollution?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    // let url = getWeatherDataByHttp + "air_pollution?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    // let url = currentWeatherAirPollutionData + lat + '/' + lon;
 
     $.ajax({
-        url: url,
+        url: getWeatherDataByHttp + 'air_pollution',
         method: 'GET',
-        dataType: 'json',
+        dataType: 'jsonp',
+        data: {
+            lat: lat,
+            lon: lon,
+            appid: apiKey
+        },
         success: function (response) {
-            console.log("Air polution data:", response);
             airpolutionData = response;
             showWeatherAirPolutionInfo(airpolutionData);
+            // console.log("Air polution data:", airpolutionData);
 
-            aqiLvl = response.list[0].main.aqi;
-            getSuggestions(aqiLvl);
+            // aqiLvl = airpolutionData.list[0].main.aqi;
+            // getSuggestions(aqiLvl);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get weather data: " + textStatus + " - " + errorThrown);

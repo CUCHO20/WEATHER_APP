@@ -7,6 +7,14 @@ function saveUserIdLocalStorageValue(id_user, value) {
     return localStorage.setItem('id_user', value);
 }
 
+function getUserIdLocalStorageValue() {
+    return localStorage.getItem('id_user');
+}
+
+function removeUserIdLocalStorageValue() {
+    return localStorage.removeItem('id_user');
+}
+
 function saveUserRolIdLocalStorageValue(id_rol, value) {
     return localStorage.setItem('id_rol', value);
 }
@@ -15,17 +23,10 @@ function getUserRolIdLocalStorageValue() {
     return localStorage.getItem('id_rol');
 }
 
-function getUserIdLocalStorageValue() {
-    return localStorage.getItem('id_user');
-}
-
 function removeUserRolIdLocalStorageValue() {
     return localStorage.removeItem('id_rol');
 }
 
-function removeUserIdLocalStorageValue() {
-    return localStorage.removeItem('id_user');
-}
 
 
 /*
@@ -125,6 +126,7 @@ function updateUserData(updateData, id) {
             loadPartialView('home/content', appRender);
             btnInfoUser('show');
             btnSearch('show');
+            getUserData(id);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Error:', textStatus, errorThrown);
@@ -154,26 +156,27 @@ function showUserIcon(img) { // Función para mostrar el icono correspondiente b
 
     dropdownBtnInfoUserOptions('show');
 
-    $('.user-icon-btn').empty();
-    $('.user-icon-btn').addClass(img || "cat-one");
+    $('.user-icon-btn').removeClass().addClass(`user-icon-btn btn d-flex align-items-center justify-content-center ${img || "cat-one"}`);
 }
 
 function setDataUser(response) {
     $('.user-rol .user-name .user-email').empty();
 
     $('.user-rol').text(response.Rol.rol1);
-    response.bgcolor != null ? $('.user-background').addClass(response.bgcolor) : $('.user-background').addClass('.bg-primary');
-    response.imagename != null ? $('.user-img').addClass(response.imagename) : $('.user-img').addClass('cat-one');
+    response.bgcolor != null ? $('.user-background').removeClass().addClass(`user-background position-relative p-5 mb-5 rounded-top ${response.bgcolor}`) : $('.user-background').removeClass().addClass('user-background position-relative p-5 mb-5 rounded-top bg-primary');
+    response.imagename != null ? $('.user-img').removeClass().addClass(`user-img ${response.imagename}`) : $('.user-img').removeClass().addClass('user-img cat-one');
     $('.user-name').text(response.user_name);
     $('.user-email').text(response.email);
+
+    $('.user-icon-btn').removeClass().addClass(`user-icon-btn btn d-flex align-items-center justify-content-center ${response.imagename}`);
 }
 
 function setDataUserToPut(response) {
     $('.user-rol .user-name-val .user-email-val .user-password-val').empty();
 
     $('.user-rol').val(response.Rol.rol1);
-    response.imagename != null ? $('.img-cat-user').addClass(response.imagename) : $('.img-cat-user').addClass('cat-one');
-    response.bgcolor != null ? $('.bg-user').addClass(response.bgcolor) : $('.bg-user').addClass('.bg-primary');
+    response.imagename != null ? $('.img-cat-user').removeClass().addClass(`img-cat-user ${response.imagename}`) : $('.img-cat-user').removeClass().addClass('img-cat-user cat-one');
+    response.bgcolor != null ? $('.bg-user').removeClass().addClass(`bg-color-chosen bg-user rounded ${response.bgcolor}`) : $('.bg-user').removeClass().addClass('bg-color-chosen bg-user rounded bg-primary');
     $('.user-name-val').val(response.user_name);
     $('.user-email-val').val(response.email);
     $('.user-password-val').val(response.password);
