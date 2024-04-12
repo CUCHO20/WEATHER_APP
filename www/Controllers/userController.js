@@ -108,6 +108,7 @@ function getUserData(id) {
         success: function (response) {
             setDataUser(response);
             setDataUserToPut(response);
+            btnUser('hide');
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Error:', textStatus, errorThrown);

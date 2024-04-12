@@ -142,7 +142,11 @@ function setSpecificSuggestionsInfo(putSuggToUpdate) {
 }
 
 function setAllSuggestionsInfo(allSuggestionsData) {
-    $('.good-list-sugg, .regular-list-sugg, .moderate-list-sugg, .deficient-list-sugg, .sodeficient-list-sugg').empty();
+    $('.good-list-sugg').empty();
+    $('.regular-list-sugg').empty();
+    $('.moderate-list-sugg').empty();
+    $('.deficient-list-sugg').empty();
+    $('.sodeficient-list-sugg').empty();
     
     for (let i = 0; i < allSuggestionsData.length; i++) {
         const element = allSuggestionsData[i];
