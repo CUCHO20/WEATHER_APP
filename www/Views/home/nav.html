@@ -109,11 +109,13 @@
         btnInfoUser('hide');
         btnUser('show');
         dropdownBtnUserOptions('show');
+        $('.show-alert-success').empty();
     });
 
     $('.btn-show-search').click(function () {
         $('#input-search').val('');
         $('.item-result').html('');
+        $('.show-alert-success').empty();
     });
 
     
@@ -126,14 +128,15 @@
     document.querySelector('.btn-login').addEventListener('click', function () {
         loadPartialView('user/login', appRender);
         btnSearch('hide');
+        $('.show-alert-success').empty();
     });
 
     // Get the register.html document to render into appRender
     document.querySelector('.btn-register').addEventListener('click', function () {
         loadPartialView('user/register', appRender);
         btnSearch('hide');
+        $('.show-alert-success').empty();
     });
 
-
-    // getUserData(getUserIdLocalStorageValue());
+    if (getUserIdLocalStorageValue() != null) {getUserData(getUserIdLocalStorageValue())}
 </script>

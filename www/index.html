@@ -80,11 +80,6 @@
 
         loadPartialView('home/nav', navRender);
         loadPartialView('home/content', appRender);
-
-        window.addEventListener('beforeunload', function (event) {
-            removeUserIdLocalStorageValue();
-            removeUserRolIdLocalStorageValue();
-        });
     </script>
 
 </body>

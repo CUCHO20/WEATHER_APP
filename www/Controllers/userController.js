@@ -60,7 +60,7 @@ function userRegister(formData) {
         data: JSON.stringify(formData),
         success: function (response) {
             console.log("Registro de usuario exitoso: ", response);
-            loadPartialView('user/login', appRender)
+            loadPartialView('user/login', appRender);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in registration: " + textStatus + " - " + errorThrown);
@@ -75,12 +75,7 @@ function userLogin(formLogin) {
         contentType: 'application/json',
         data: JSON.stringify(formLogin),
         success: function (response) {
-            console.log(response.value.id_rol)
             if (response.Success == true) {
-                console.log(response);
-                console.log('Inicio de sesión exitoso:', response.Message);
-                console.log('ID de usuario:', getUserIdLocalStorageValue("id_user"));
-
                 loadPartialView('home/content', appRender);
                 loadPartialView('Modules/alert-login-success', showAlertLoginSuccess);
 
@@ -91,7 +86,12 @@ function userLogin(formLogin) {
                 showUserIcon(response.value.imagename);
                 getUserData(parseInt(response.value.id_user));
             } else {
-                console.error('Error al iniciar sesión:', response.Message);
+                $('.show-alert-login').empty().append(`
+                <div class="alert alert-dismissible text-light ${response.Message_Classes}">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                    <strong>${response.Message}</strong>
+                </div>
+                `);
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {

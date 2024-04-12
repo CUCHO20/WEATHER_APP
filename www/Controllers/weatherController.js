@@ -133,8 +133,8 @@ function getWeatherAirPolution(lat, lon) {
             showWeatherAirPolutionInfo(airpolutionData);
             console.log("Air polution data:", airpolutionData);
 
-            // aqiLvl = airpolutionData.list[0].main.aqi;
-            // getSuggestions(aqiLvl);
+            aqiLvl = airpolutionData.list[0].main.aqi;
+            getSuggestions(aqiLvl);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get weather data: " + textStatus + " - " + errorThrown);

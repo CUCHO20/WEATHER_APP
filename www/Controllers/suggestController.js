@@ -246,7 +246,7 @@ function setSuggestionsInfo(suggestionsData) {
 
     for (i = 0; i < suggestionsData.length; i++) {
         const element = suggestionsData[i];
-        if (element.suggestion1 != '') {
+        if (element.suggestion1 != '' && element.status === true) {
             let html = `
                 <li class="m-0 p-2">${element.suggestion1}</li>
             `;

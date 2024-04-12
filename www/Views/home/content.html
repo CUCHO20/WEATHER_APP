@@ -1,20 +1,20 @@
-<section class="container vh-100" id="main-weather">
-    <div class="d-flex align-items-center justify-content-center vh-100">
+<section class="pb-4 container d-flex align-items-center justify-content-center vh-100" id="main-weather">
+    <div class="pb-5 d-flex align-items-center justify-content-center vh-100">
         <div class="content-weather d-flex flex-column align-items-center justify-content-center">
-            <h2 class="text-center text-body mb-0 pb-3"><strong>Ahora</strong></h2>
+            <h1 class="text-center text-body mb-0 pb-3"><strong>Ahora</strong></h1>
             <img width="100" class="icon-weather text-center m-0 py-3">
             <h1 class="status-weather text-center text-dark m-0 py-2" style="font-size: 7rem">
 
             </h1>
-            <h3 class="city-weather text-center text-body mb-4" style="font-size: 2rem">
-
-            </h3>
+            <h1 class="text-center text-body mb-5" style="font-size: 2.6rem">
+                <strong class="city-weather"></strong>
+            </h1>
             <div class="d-flex info-weather">
                 <div class="me-3">
-                    <p class="info-day text-center text-body"></p>
+                    <p class="info-day text-center text-body" style="font-size: 1.2rem"></p>
                 </div>
                 <div class="ms-3">
-                    <p class="info-city text-center text-body"></p>
+                    <p class="info-city text-center text-body" style="font-size: 1.2rem"></p>
                 </div>
             </div>
         </div>
@@ -247,7 +247,7 @@
 </section>
 
 <script>
-    // init();
+    init();
 
     btnEditSuggRender = $('.nav-btn-edit-sugg');
     if (getUserRolIdLocalStorageValue() == 2) { loadPartialView('Modules/btn-edit-sugg', btnEditSuggRender); }
