@@ -57,6 +57,27 @@
     <!-- GLOBAL INIT JS -->
     <script src="Public/js/init.js"></script>
 
+    <script>
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+        // Añadimos el evento cuando la API esté lista
+        function onDeviceReady() {
+            document.addEventListener("resume", onResume, false);
+            document.addEventListener("backbutton", onBackKeyDown, false);
+        }
+
+        // Se ha producido el evento "backbutton"!
+        function onBackKeyDown() {
+        }
+
+        // Se ha producido el evento "resume"!
+        function onResume() {
+            getUserData(getUserIdLocalStorageValue());
+        }
+    </script>
+
 </head>
 
 <body>

@@ -240,7 +240,9 @@ function removeModalSugg() {
 }
 
 function setSuggestionsInfo(suggestionsData) {
-    $('#aqi-lvl .aqi-txt .aqi-list').empty();
+    $('#aqi-lvl').empty();
+    $('.aqi-txt').empty();
+    $('.aqi-list').empty();
     $('#aqi-lvl').removeClass().addClass('px-2 rounded text-white');
 
     $('#aqi-lvl').text(suggestionsData[0].WStatu.level_txt);
