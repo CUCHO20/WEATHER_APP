@@ -80,14 +80,35 @@
         loadPartialView('home/nav', navRender);
         loadPartialView('home/content', appRender);
 
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, false);
+        function onLoadRemoveId() {
+            removeUserIdLocalStorageValue();
+            removeUserRolIdLocalStorageValue();
+
+            loadPartialView('home/content', appRender);
+
+            btnInfoUser('hide');
+            btnUser('show');
+            dropdownBtnUserOptions('show');
+            $('.show-alert-success').empty();
         }
 
-        // Añadimos el evento cuando la API esté lista
-        function onDeviceReady() {
-            getUserData(getUserIdLocalStorageValue());
-        }
+        window.onload = onLoadRemoveId();
+
+        // function onLoad() {
+        //     document.addEventListener("deviceready", onDeviceReady, false);
+        // }
+
+        // // Añadimos el evento cuando la API esté lista
+        // function onDeviceReady() {
+        //     removeUserIdLocalStorageValue();
+        //     removeUserRolIdLocalStorageValue();
+
+        //     loadPartialView('home/content', appRender);
+
+        //     btnInfoUser('hide');
+        //     btnUser('show');
+        //     dropdownBtnUserOptions('show');
+        // }
     </script>
 
 </body>
