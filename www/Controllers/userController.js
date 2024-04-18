@@ -85,6 +85,8 @@ function userLogin(formLogin) {
                 showAlertSuccess(response);
                 showUserIcon(response.value.imagename);
                 getUserData(parseInt(response.value.id_user));
+                $('.list-locations').empty();
+                getLocationToUser(parseInt(response.value.id_user));
             } else {
                 $('.show-alert-login').empty().append(`
                 <div class="alert alert-dismissible text-light ${response.Message_Classes}">
@@ -161,7 +163,7 @@ function showUserIcon(img) { // Función para mostrar el icono correspondiente b
 }
 
 function setDataUser(response) {
-    $('.user-rol .user-name .user-email').empty();
+    $('.user-rol, .user-name, .user-email').empty();
 
     $('.user-rol').text(response.Rol.rol1);
     response.bgcolor != null ? $('.user-background').removeClass().addClass(`user-background position-relative p-5 mb-5 rounded-top ${response.bgcolor}`) : $('.user-background').removeClass().addClass('user-background position-relative p-5 mb-5 rounded-top bg-primary');

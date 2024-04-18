@@ -290,9 +290,13 @@ function showWeatherInfo(weatherData) {
     // SHOW BOTTON
     let lat = weatherData.coord.lat;
     let lon = weatherData.coord.lon;
-    let location = weatherData.name;
+    location = weatherData.name;
     let state = weatherData.sys.country;
     let id = getUserIdLocalStorageValue();
+
+    console.log(lat)
+    console.log(lon)
+    console.log(location)
 
     locationData = {
         lat: lat,
@@ -304,7 +308,7 @@ function showWeatherInfo(weatherData) {
 
     if (getUserIdLocalStorageValue() != undefined) {
         $('#btn-save-location').append(`
-        <a onclick="saveLocationByCoords(locationData)" class="btn-save-location text-light" style="text-decoration: none;">
+        <a onclick="saveLocationByCoords(locationData, location)" class="btn-save-location text-light" style="text-decoration: none;">
             <div class="px-2 d-flex align-items-center justify-content-center rounded bg-success"
                 style="width: auto; height: auto;"><i class="bi bi-plus text-light" style="font-size: x-large;"></i> Agregar
             </div>

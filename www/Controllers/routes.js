@@ -1,10 +1,12 @@
 const localServer = "http://localhost:49628/api/"
 const remoteServer = "https://climainfo.bsite.net/api/"
 
-const env = localServer
+const env = remoteServer
 
 // Locations API
 const getLocations = env + 'Locations'
+const getLocationByUser = env + 'Locations/User/'
+const deleteLocation = env + 'Locations/'
 
 // Users API
 const dataUser = env + "Users/" // Method GET
@@ -25,6 +27,7 @@ const geocodingWeather = env + "geocoding" // + {lat}/{lon}
 const currentWeatherAirPollutionData = env + "airquality" // + {lat}/{lon}
 
 const apiKey = "bbb366d2d2d593fd4c87ec503493363c" // API Key
+// const apiKey = "973f8f95617c7c9382ab3b8e53841336" // API Key
 const getWeatherData = "https://api.openweathermap.org/data/2.5/" // Method GET
 const getWeatherDataByHttp = "http://api.openweathermap.org/data/2.5/" // Method GET
 const getGeocodingDataByHttp = "http://api.openweathermap.org/geo/1.0/" // Method GET
