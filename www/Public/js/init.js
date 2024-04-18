@@ -85,6 +85,8 @@ function showAlertSuccess(response) {
 // Variables y arreglos declarados y funciones con operaciones a utilizar
 let weatherData
 
+let locationData
+
 let map = null
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];

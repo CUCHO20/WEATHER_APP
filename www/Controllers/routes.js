@@ -1,7 +1,10 @@
-const localServer = "http://localhost:53838/api/"
+const localServer = "http://localhost:49628/api/"
 const remoteServer = "https://climainfo.bsite.net/api/"
 
-const env = remoteServer
+const env = localServer
+
+// Locations API
+const getLocations = env + 'Locations'
 
 // Users API
 const dataUser = env + "Users/" // Method GET

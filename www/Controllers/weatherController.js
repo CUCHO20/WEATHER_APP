@@ -43,8 +43,8 @@ function getCoordinatesByNameForInput(location) {
         success: function (response) {
             geocodingLimitData = JSON.parse(response);
             geocodingLimitData.length > 0
-            ? initBySearch(geocodingLimitData[0].lat, geocodingLimitData[0].lon)
-            : loadPartialView('error404/not-found', appRender);
+                ? initBySearch(geocodingLimitData[0].lat, geocodingLimitData[0].lon)
+                : loadPartialView('error404/not-found', appRender);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get geocoding data: " + textStatus + " - " + errorThrown);
@@ -89,7 +89,7 @@ function getWeatherByCoordinates(lat, lon) {
         success: function (response) {
             weatherData = response;
             showWeatherInfo(weatherData);
-            // console.log("Weather data:", weatherData);
+            console.log("Weather data:", weatherData);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error in get weather data: " + textStatus + " - " + errorThrown);
@@ -283,8 +283,34 @@ function showWeatherFiveOvercastInfo(fiveoverData) {
 function showWeatherInfo(weatherData) {
     // RESET
 
-    $('.status-weather .icon-weather .info-day .info-city .city-weather').empty();
-    $('.sunrise-w .sunset-w .humidity-w .pressure-w .visibility-w .feels-like-w').empty();
+    $('#btn-save-location').empty();
+    $('.status-weather, .icon-weather, .info-day, .info-city, .city-weather').empty();
+    $('.sunrise-w, .sunset-w, .humidity-w, .pressure-w, .visibility-w, .feels-like-w').empty();
+
+    // SHOW BOTTON
+    let lat = weatherData.coord.lat;
+    let lon = weatherData.coord.lon;
+    let location = weatherData.name;
+    let state = weatherData.sys.country;
+    let id = getUserIdLocalStorageValue();
+
+    locationData = {
+        lat: lat,
+        lon: lon,
+        location1: location,
+        state_city: state,
+        id_user: id
+    };
+
+    if (getUserIdLocalStorageValue() != undefined) {
+        $('#btn-save-location').append(`
+        <a onclick="saveLocationByCoords(locationData)" class="btn-save-location text-light" style="text-decoration: none;">
+            <div class="px-2 d-flex align-items-center justify-content-center rounded bg-success"
+                style="width: auto; height: auto;"><i class="bi bi-plus text-light" style="font-size: x-large;"></i> Agregar
+            </div>
+        </a>
+        `);
+    }
 
     // TODAY SECTION
 
